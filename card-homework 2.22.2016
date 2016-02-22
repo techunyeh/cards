@@ -1,0 +1,62 @@
+public class Cards{
+  
+  public static int rand(int high){                  // rand is the method to put numbers randomly
+      return (int) (high*Math.random()+1);
+    }
+  
+  public static void shuffle(String[] the_deck, int switches){
+    String temp;
+    int a; int b;                         // need 2 integers to switch two cards
+    for(int i=0; i<switches; i++){
+      a = rand(52);                       // we sign that the max is 52
+      b = rand(52);
+      temp = the_deck[a-1];               // "-1" because in coding it starts from 0
+      the_deck[a-1] = the_deck[b-1];          
+      the_deck[b-1] = temp;
+    } 
+  }
+  
+  public static void main(String[] args){
+   
+    String[] deck = new String[52];                 // there are 52 cards
+    String[] suit = new String[4];                  // there 4 four different colors which is Clubs, Diamonds, Hearts and Spades
+    int[] card = new int[13];                       // each color has 13 cards
+    
+    for (int i=0; i<card.length; i++){
+      card[i]=i+1;}
+    String cardName;
+    suit[0] = "Clubs";                // giving the suit names
+    suit[1] = "Diamonds";
+    suit[2] = "Hearts" ;
+    suit[3] = "Spades";
+      
+      
+    for(int i=0; i<4; i++){
+      for(int j=0; j<13; j++){
+        if(j==0){cardName="Ace";}                  // sign that when j is 0 the card name will be Ace
+        else if(j==10){cardName="Jack";}           // sign that when j is 10 the card name will be Jack
+        else if(j==11){cardName="Queen";}          // sign that when j is 11 the card name will be queen
+        else if(j==12){cardName="King";}           // sign that when j is 12 the card name will be King
+        else {cardName=Integer.toString(card[j]);}  // sign that when j is equal to other number, which is from 1 to 9,
+                                                        the card name will be turn from integer to string
+        deck[ 13*i+j ]= cardName + "_" +suit[i];     // this line pu everything together
+      }
+    }
+      
+    for(int i=0; i<52; i++){
+        System.out.println(deck[i]);     
+      }
+      
+    shuffle(deck, 1000);         // since we are only switching 2 cards at one time, in order to make sure the cards are well shuffled
+                                     we need a large number to shuffled it
+    
+    System.out.println("SHUFFLED");
+    
+    for(int i=0; i<52; i++){
+        System.out.println(deck[i]);   //Last but certainly not least, this line print out all the cards and they are all shuffled.
+      }
+    
+    
+    
+  }
+}
